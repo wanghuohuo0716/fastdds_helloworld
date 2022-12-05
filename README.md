@@ -1,5 +1,5 @@
-
 # 目录
+- [目录](#目录)
 - [一、FastDDS和Fast-RTPS区别](#一fastdds和fast-rtps区别)
 - [二、FastDDS安装](#二fastdds安装)
   - [2.1 安装包下载](#21-安装包下载)
@@ -7,7 +7,7 @@
   - [2.3 测试](#23-测试)
   - [2.4 添加环境变量](#24-添加环境变量)
   - [2.5 卸载](#25-卸载)
-- [三、FastDDS使用（不要用鱼香ros的那个fastdds的demo做编译，换成自己的github）](#三fastdds使用不要用鱼香ros的那个fastdds的demo做编译换成自己的github)
+- [三、FastDDS使用](#三fastdds使用)
   - [3.1 创建CMake工程项目](#31-创建cmake工程项目)
   - [3.2 编写IDL文件](#32-编写idl文件)
     - [3.2.1 定义IDL数据类型](#321-定义idl数据类型)
@@ -120,10 +120,9 @@ FastDDS提供了三种安装方式，分别是`bin`、`Source`、`docker image` 
 
 * **IDL文件生成接口文件**
 ```bash
-git clone https://github.com/fishros/dds_tutorial.git
-cd dds_tutorial/examples/01-hellofishros/src
-rm idl_generate/* # 删除已有的接口文件
-fastddsgen HelloFishRos.idl -d idl_generate/ # -d选项指示生成的头文件保存目录
+git clone https://github.com/wanghuohuo0716/fastdds_helloworld.git
+cd fastdds_helloworld/idl
+fastddsgen HelloWorld.idl -d ./../include/idl_generate/ # -d选项指示生成的头文件保存目录
 ```
 
 * **编译FastDDS的程序**
@@ -141,19 +140,17 @@ make
 
 ```
 cd build/
-./DDSHelloFishRosPublisher
+./DDSHelloWorldPublisher
 ```
 
 ```
 cd build/
-./DDSHelloFishRosSubscribe
+./DDSHelloWorldSubscriber
 ```
 
 可以看到终端输出
 
 ![](https://upload-images.jianshu.io/upload_images/20587097-dc7e04287c177437.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
 
 ## 2.4 添加环境变量
 
@@ -178,7 +175,7 @@ cd build/
 
 **注意：如果任何其他组件已经以某种其他方式安装在系统中，它们也将被删除。为避免这种情况，请在执行之前编辑` ./uninstall.sh`脚本。**
 
-# 三、FastDDS使用（不要用鱼香ros的那个fastdds的demo做编译，换成自己的github）
+# 三、FastDDS使用
 
 ## 3.1 创建CMake工程项目
 
@@ -692,8 +689,11 @@ target_link_libraries(DDSHelloWorldSubscriber
 生成`Publisher`和`Subscriber`可执行文件。
 
 参考：
+**官方C++版helloworld**：https://fast-dds.docs.eprosima.com/en/v2.3.3/fastdds/getting_started/simple_app/simple_app.html
+**官方python版helloworld**：https://fast-dds.docs.eprosima.com/en/v2.3.3/fastddsgen/pubsub_app/pubsub_app.html#fastddsgen-pubsub-app
 官方快速开始教程：https://fast-dds.docs.eprosima.com/en/latest/fastdds/getting_started/getting_started.html
-官方二进制安装教程：https://fast-dds.docs.eprosima.com/en/latest/installation/binaries/binaries_linux.html
+**官方二进制安装教程**：https://fast-dds.docs.eprosima.com/en/latest/installation/binaries/binaries_linux.html
+**官方代码helloworld示例**：https://github.com/eProsima/Fast-DDS-docs/blob/master/code/Examples
 鱼香ros的cmake工程：https://github.com/fishros/dds_tutorial
 静态编译的cmake工程：https://blog.csdn.net/briblue/article/details/124081170
 fastdds的helloworld代码解释：https://blog.csdn.net/u012739527/article/details/124705821
@@ -704,4 +704,5 @@ eProsima Fast DDS-Gen介绍：https://fast-dds.docs.eprosima.com/en/latest/fastd
 fastdds如何通过同一个类使用不同类型的数据接口，利用模板类？
 是否已有一些基本类型可供fastdds的程序使用，不用自己新建idl文件？
 fastdds的subscriber必须在listener中编写回调函数么，不能像ROS一样，在创建topic时绑定回调函数？
-
+动态 HelloWorld 示例学习：https://fast-dds.docs.eprosima.com/en/latest/fastdds/dynamic_types/examples.html
+动态主题类型：https://fast-dds.docs.eprosima.com/en/latest/fastdds/dynamic_types/dynamic_types.html
