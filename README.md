@@ -1,6 +1,5 @@
 
 # 目录
-- [目录](#目录)
 - [一、FastDDS和Fast-RTPS区别](#一fastdds和fast-rtps区别)
 - [二、FastDDS安装](#二fastdds安装)
   - [2.1 安装包下载](#21-安装包下载)
@@ -45,8 +44,6 @@
     - [3.5.2 添加依赖](#352-添加依赖)
     - [3.5.3 生成IDL数据类型的库文件](#353-生成idl数据类型的库文件)
     - [3.5.4 生成可执行文件](#354-生成可执行文件)
-  - [DDS三种通信方式的效率对比](#dds三种通信方式的效率对比)
-
 
 # 一、FastDDS和Fast-RTPS区别
 eProsima Fast RTPS 是一个高性能的发布订阅框架，使用基于发布者、订阅者和数据主题的解耦模型在分布式系统中共享数据。 Fast RTPS 实现了许多 DDS 规范，例如 DDS 安全性、DDS-XTypes、RPC over DDS、DDS TCP PSM 和现代 C DDS 映射，**但Fast RTPS中一些核心 DDS API 尚未完全符合标准。**
@@ -694,49 +691,17 @@ target_link_libraries(DDSHelloWorldSubscriber
 
 生成`Publisher`和`Subscriber`可执行文件。
 
-官方教程
-https://fast-dds.docs.eprosima.com/en/latest/fastdds/getting_started/getting_started.html
-
-官方安装教程，从二进制文件安装 Linux
-https://fast-dds.docs.eprosima.com/en/latest/installation/binaries/binaries_linux.html
-
-cmake工程参考
-https://github.com/fishros/dds_tutorial
-https://blog.csdn.net/briblue/article/details/124081170
-
-参考
-https://blog.csdn.net/Fan0628/article/details/90265791
-https://blog.csdn.net/u012739527/article/details/124705821
-
-
-
-https://blog.csdn.net/briblue/article/details/124081170
-
-来自论文SCIENCE ROBOTICS的Robot Operating System 2: Design, architecture,and uses in the wild
-![](https://upload-images.jianshu.io/upload_images/20587097-2fd0b2810b9f6ae2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-## DDS三种通信方式的效率对比
-DDS的默认配置在通信大于1 MB的信息时不是特别有效，这对用户来说是一个真正的挑战。有几个原因:小的默认UDP缓冲区大小，UDP碎片限制，和DDS可靠性保证需要重传数据包。通过以牺牲计算资源为代价调优网络参数，可以消除其中许多问题。使用ROS 2中的合成和进程内通信模式也可以提高性能。组合是ROS 2中推荐的设计模式，为了鼓励采用它，它做得很简单。
-
-ZMQ性能对比（地平线的togetherROS）
-
-
-
-DDS-RPC与DDS-RTPS区别
-
-
-fast dds和fast rtps区别
-Fast RTPS is now Fast DDS!
-
-https://www.eprosima.com/index.php/company-all/news/146-fast-rtps-is-now-fast-dds
-
-
- Fast DDS 和 RTPS 关系？
-![](https://upload-images.jianshu.io/upload_images/20587097-36f707a01e3a74ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 参考：
-FastDDS和Fast-RTPS区别：https://www.eprosima.com/index.php/company-all/news/146-fast-rtps-is-now-fast-dds
-
-FastDDS安装包：https://www.eprosima.com/index.php?option=com_ars&view=browses&layout=normal
-
+官方快速开始教程：https://fast-dds.docs.eprosima.com/en/latest/fastdds/getting_started/getting_started.html
+官方二进制安装教程：https://fast-dds.docs.eprosima.com/en/latest/installation/binaries/binaries_linux.html
+鱼香ros的cmake工程：https://github.com/fishros/dds_tutorial
+静态编译的cmake工程：https://blog.csdn.net/briblue/article/details/124081170
+fastdds的helloworld代码解释：https://blog.csdn.net/u012739527/article/details/124705821
 eProsima Fast DDS-Gen介绍：https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/introduction/introduction.html
+
+
+待做：
+fastdds如何通过同一个类使用不同类型的数据接口，利用模板类？
+是否已有一些基本类型可供fastdds的程序使用，不用自己新建idl文件？
+fastdds的subscriber必须在listener中编写回调函数么，不能像ROS一样，在创建topic时绑定回调函数？
+
