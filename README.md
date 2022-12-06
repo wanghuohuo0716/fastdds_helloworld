@@ -121,8 +121,10 @@ FastDDS提供了三种安装方式，分别是`bin`、`Source`、`docker image` 
 * **IDL文件生成接口文件**
 ```bash
 git clone https://github.com/wanghuohuo0716/fastdds_helloworld.git
-cd fastdds_helloworld/idl
-fastddsgen HelloWorld.idl -d ./../include/idl_generate/ # -d选项指示生成的头文件保存目录
+cd fastdds_helloworld
+mkdir -p include/idl_generate/
+cd idl/
+fastddsgen -d ./../include/idl_generate/  HelloWorld.idl# -d选项指示生成的头文件保存目录
 ```
 
 * **编译FastDDS的程序**
